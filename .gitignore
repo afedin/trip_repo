@@ -1,0 +1,23 @@
+# Virtual environment
+tripvenv/
+
+# IDE files
+.idea/
+.vscode/
+.gitignore/
+# # Byte-compiled / optimized / DLL files
+# __pycache__/
+# *.py[cod]
+# *$py.class
+
+# # Log files
+# *.log
+
+# # Cache files
+# .cache/
+# *.pyc
+# *.pyo
+# *.egg-info/
+# dist/
+# build/
+

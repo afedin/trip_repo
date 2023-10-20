@@ -1,0 +1,55 @@
+/* Стили для html и body */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Стили для карты */
+map {
+    background-color:#B0E0E6;
+    height: calc(100% - 50px); /* вычесть высоту панели */
+    width: 100%;
+}
+
+
+/* Стили для легенды */
+.legend {
+    padding: 10px;  /* Внутренний отступ */
+    background-color: #ffffff;  /* Белый фон */
+    border: 2px solid #ffffff;  /* Белая рамка */
+    border-radius: 5px;  /* Скругленные углы */
+}
+
+.legend i {
+    border: 1px solid grey;  /* Добавление рамки */
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    float: left;
+    display: inline-block;
+}
+
+/* ... (ваш текущий CSS код) ... */
+
+/* Стили для маркеров в легенде */
+.legend-marker {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;  /* Делает маркер круглым */
+    display: inline-block;
+    margin-right: 8px;
+}
+#top-panel h1 {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+
+
