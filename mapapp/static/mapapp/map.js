@@ -51,20 +51,20 @@ fetch('/static/data/countries.geojson')
             },
 
             // Определение поведения для каждого объекта при добавлении на карту
-            // onEachFeature: function (feature, layer) {
-            //     // Если у объекта есть свойство NAME_RU (название страны на русском языке)
-            //     if (feature.properties && feature.properties.NAME_RU) {
-            //         // Привязка подсказки с названием страны к объекту
-            //         layer.bindTooltip(feature.properties.NAME_RU, {
-            //             // Подсказка не отображается постоянно, а только при наведении курсора
-            //             permanent: false,  
-            //             // Подсказка располагается по центру объекта
-            //             direction: 'center',
-            //             // Подсказка имеет класс country-label для стилизации
-            //             className: 'country-label'
-            //         });
-            //     }
-            // }
+            onEachFeature: function (feature, layer) {
+                // Если у объекта есть свойство NAME_RU (название страны на русском языке)
+                if (feature.properties && feature.properties.NAME_RU) {
+                    // Привязка подсказки с названием страны к объекту
+                    layer.bindTooltip(feature.properties.NAME_RU, {
+                        // Подсказка не отображается постоянно, а только при наведении курсора
+                        permanent: false,  
+                        // Подсказка располагается по центру объекта
+                        direction: 'center',
+                        // Подсказка имеет класс country-label для стилизации
+                        className: 'country-label'
+                    });
+                }
+            }
         }).addTo(map); // Добавление слоя geoLayer на карту
         
         // Определение поведения для всего слоя geoLayer при наведении и убирании курсора
