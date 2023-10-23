@@ -19,3 +19,14 @@ services:
       - "80:80"
     depends_on:
       - app
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    command: certonly --webroot --webroot-path=/var/www/html --email afedin.gis2014@gmail.com -d wherefly.online -d www.wherefly.online --agree-tos --no-eff-email
+
+volumes:
+  certbot-etc:
+  certbot-var:
