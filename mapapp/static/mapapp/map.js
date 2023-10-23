@@ -12,12 +12,12 @@ L.control.zoom({
 }).addTo(map);
 
 // Определение местоположения пользователя с помощью API геолокации браузера
-navigator.geolocation.getCurrentPosition((position) => {
-    // Получение координат пользователя в виде массива [широта, долгота]
-    const userLocation = [position.coords.latitude, position.coords.longitude];
-    // Центрирование карты на местоположении пользователя и увеличение масштаба до 40
-    map.setView(userLocation, 40);
-});
+// navigator.geolocation.getCurrentPosition((position) => {
+//     // Получение координат пользователя в виде массива [широта, долгота]
+//     const userLocation = [position.coords.latitude, position.coords.longitude];
+//     // Центрирование карты на местоположении пользователя и увеличение масштаба до 40
+//     map.setView(userLocation, 40);
+// });
 
 // Загрузка и отображение данных GeoJSON с сервера по указанному URL
 fetch('/static/data/countries.geojson')
