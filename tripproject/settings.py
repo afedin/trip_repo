@@ -22,7 +22,7 @@ SECRET_KEY = 'django-insecure-a3kf3w@==r$(v=5v=fmqea2x=77f_%rsh#6-4_a$67p6e+m*83
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['35.209.117.181', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['35.209.117.181', 'localhost', '127.0.0.1','wherefly.online', 'www.wherefly.online']
 
 # Application definition
 
