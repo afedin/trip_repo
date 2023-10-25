@@ -17,8 +17,10 @@ Including another URLconf
 # tripproject/urls.py
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path  # Добавьте re_path
 from django.contrib.sitemaps.views import sitemap
+from django.views.static import serve  # Добавьте этот импорт
+from django.conf import settings  # Добавьте этот импорт
 from mapapp.sitemaps import StaticViewSitemap  # импортирование вашего класса Sitemap
 
 sitemaps = {
@@ -30,4 +32,9 @@ urlpatterns = [
     path('map/', include('mapapp.urls')),
     path('', include('mapapp.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),  # новый маршрут для sitemap.xml
+    re_path(r'^1q5ki2uavdjmt7s0zi8131pb54ryfq3hpjdshfpw3P6dd2\.txt$', serve, {
+        'path': '1q5ki2uavdjmt7s0zi8131pb54ryfq3hpjdshfpw3P6dd2.txt',
+        'document_root': settings.STATIC_ROOT,
+    }),  # Добавьте этот маршрут для статического файла с ключом
 ]
+
