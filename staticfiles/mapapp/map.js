@@ -1,101 +1,3 @@
-// // Инициализация карты
-// const map = L.map('map', {
-//     renderer: L.canvas({ backgroundColor: '#B0E0E6' }),
-//     zoomControl: false
-// }).setView([-15, 0], 2);  // здесь -15 вместо -10
-
-
-// L.control.zoom({
-//     position:'bottomright' // или 'bottomleft'
-// }).addTo(map);
-
-// // Определение местоположения пользователя
-// navigator.geolocation.getCurrentPosition((position) => {
-//     const userLocation = [position.coords.latitude, position.coords.longitude];
-//     map.setView(userLocation, 40);
-// });
-
-// // Загрузка и отображение данных GeoJSON
-// fetch('/static/data/countries.geojson')
-//     .then(response => response.json())
-//     .then(data => {
-//         geoLayer = L.geoJSON(data, {
-//             style: (feature) => {
-//                 const legend = feature.properties.legend;
-//                 switch (legend) {
-//                     case 'Россия':
-//                         return {color: '#858482', fillColor: '#abaff0', fillOpacity: 0.45, weight: 1, opacity: 0.45};
-//                     case 'Паспорт РФ':
-//                         return {color: '#858482', fillColor: '#abf0e7', fillOpacity: 0.45, weight: 1, opacity: 0.45};
-//                     case 'Без визы':
-//                         return {color: '#858482', fillColor: '#a5ff6c', fillOpacity: 0.45, weight: 1, opacity: 0.45};
-//                     case 'Электронная виза':
-//                         return {color: '#858482', fillColor: '#c3d790', fillOpacity: 0.45, weight: 1, opacity: 0.45};
-//                     case 'Виза по прибытии':
-//                         return {color: '#858482', fillColor: '#7dae61', fillOpacity: 0.45, weight: 1, opacity: 0.45};
-//                     case 'Требуется виза':
-//                         return {color: '#858482', fillColor: '#eab25e', fillOpacity: 0.35, weight: 1, opacity: 0.45};
-//                     case 'Отказано во въезде':
-//                         return {color: '#858482', fillColor: '#d7191c', fillOpacity: 0.45, weight: 1, opacity: 0.45};    
-//                     case 'Неизвестно':
-//                         return {color: '#858482', fillColor: '#a2c0cc', fillOpacity: 0.055, weight: 1, opacity: 0.21};
-//                     default:
-//                         return {color: '#858482', fillColor: '#2b83ba', fillOpacity: 0.45, weight: 1, opacity: 0.45};
-//                 }
-//             },
-
-            
-//             onEachFeature: function (feature, layer) {
-//                 if (feature.properties && feature.properties.NAME_RU) {
-//                     layer.bindTooltip(feature.properties.NAME_RU, {
-//                         permanent: false,  // здесь убрать постоянные подписи
-//                         direction: 'center',
-//                         className: 'country-label'
-//                     });
-//                 }
-//             }
-//         }).addTo(map);
-        
-//         geoLayer.on('mouseover', function(e) {
-//             e.layer.openTooltip();
-//         }).on('mouseout', function(e) {
-//             e.layer.closeTooltip();
-//         });
-//     });
-
-// map.on('zoomend', function() {
-//     const zoomLevel = map.getZoom();
-//     geoLayer.eachLayer(function(layer) {
-//         if (zoomLevel >= 20) {  // здесь можно выбрать нужный уровень масштаба
-//             layer.openTooltip();
-//         } else {
-//             layer.closeTooltip();
-//         }
-//     });
-// });
-    
-
-// // ... (ваш код для легенды)
-// var legend = L.control({ position: 'topright' });
-
-// legend.onAdd = function (map) {
-//     var div = L.DomUtil.create('div', 'info legend');
-//     var categories = ['Отказано во въезде', 'Требуется виза', 'Виза по прибытии', 'Электронная виза', 'Без визы', 'Паспорт РФ', 'Россия', 'Неизвестно'];
-//     var colors = ['#d7191c', '#eab25e', '#7dae61', '#c3d790', '#a5ff6c', '#abf0e7', '#abaff0', '#a2c0cc'];
-
-//     for (var i = 0; i < categories.length; i++) {
-//         div.innerHTML +=
-//             '<span class="legend-marker" style="background:' + colors[i] + '"></span> ' +
-//             categories[i] + '<br>';
-//     }
-
-//     return div;
-// };
-
-// // Добавление легенды на карту
-// legend.addTo(map);
-
-
 // Создание карты с помощью библиотеки Leaflet
 const map = L.map('map', {
     // Использование рендерера canvas для отрисовки карты с фоновым цветом #B0E0E6
@@ -110,12 +12,12 @@ L.control.zoom({
 }).addTo(map);
 
 // Определение местоположения пользователя с помощью API геолокации браузера
-navigator.geolocation.getCurrentPosition((position) => {
-    // Получение координат пользователя в виде массива [широта, долгота]
-    const userLocation = [position.coords.latitude, position.coords.longitude];
-    // Центрирование карты на местоположении пользователя и увеличение масштаба до 40
-    map.setView(userLocation, 40);
-});
+// navigator.geolocation.getCurrentPosition((position) => {
+//     // Получение координат пользователя в виде массива [широта, долгота]
+//     const userLocation = [position.coords.latitude, position.coords.longitude];
+//     // Центрирование карты на местоположении пользователя и увеличение масштаба до 40
+//     map.setView(userLocation, 40);
+// });
 
 // Загрузка и отображение данных GeoJSON с сервера по указанному URL
 fetch('/static/data/countries.geojson')
