@@ -1,25 +1,12 @@
-<!-- 
-FILEPATH: /Users/iuser/projects/tripproj/tripproject_old/mapapp/templates/mapapp/map.html
-
-This HTML file contains the template for the map page of the WhereFly web application. It loads static files from the "static" directory and uses Leaflet, a JavaScript library for interactive maps, to display the map. The file also includes styles for the map and a legend panel, as well as a logo and a top panel with a dark blue background.
-
-The following elements are included in this file:
-- A title for the browser tab
-- Links to Leaflet styles and scripts from a CDN
-- A link to the jQuery library from a CDN
-- Styles for the map and the legend panel
-- Styles for the markers in the legend
-- Styles for the country labels on the map
-- A logo in the top left corner of the page
-- A top panel with a dark blue background
-
--->
 {% load static %} <!-- Загрузка статических файлов из директории static -->
-<!DOCTYPE html> <!-- Объявление типа документа HTML5 -->
+<!DOCTYPE html>
+<html lang="ru">
 <html> <!-- Начало HTML документа -->
 <head> <!-- Начало заголовка документа -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VZEBBVZN6"></script>
 <script>
@@ -40,115 +27,13 @@ The following elements are included in this file:
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <!-- Подключение библиотеки jQuery из CDN (сети доставки контента) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <style> 
-        * {
-  margin: 0; /* Убрать внешние отступы для всех элементов */
-  padding: 0; /* Убрать внутренние отступы для всех элементов */
-  box-sizing: border-box; /* Указать, что размеры элементов включают границы и отступы */
-}
-.leaflet-bottom.leaflet-right {
-    bottom: 60px !important;  /* Сместить элементы управления карты вниз на 60 пикселей */
-}
 
-
-        html, body {
-            height: 100%; /* Задать высоту html и body равной высоте окна браузера */
-            margin: 0; /* Убрать внешние отступы для html и body */
-            padding: 0; /* Убрать внутренние отступы для html и body */
-        }
-
-        #map {
-    background-color:#B0E0E6; /* Задать цвет фона для элемента с id map */
-    height: calc(100% - 50px); /* Задать высоту элемента с id map равной высоте окна браузера минус 50 пикселей (высота панели) */
-    width: 100%; /* Задать ширину элемента с id map равной ширине окна браузера */
-}
-
-
-        
-        /* Стили для панели с информацией */
-        .legend {
-    background-color: #ffffff; /* Задать белый цвет фона для элементов с классом legend */
-    border: 2px solid #ffffff; /* Задать белую границу толщиной 2 пикселя для элементов с классом legend */
-    border-radius: 5px;  /* Задать радиус скругления углов в 5 пикселей для элементов с классом legend */
-    padding: 10px;  /* Задать внутренний отступ в 10 пикселей для элементов с классом legend */
-}
-
-.legend {
-    padding: 10px;  /* Задать внутренний отступ в 10 пикселей для элементов с классом legend */
-    background-color: #ffffff;  /* Задать белый цвет фона для элементов с классом legend */
-    border: 2px solid #ffffff;  /* Задать белую границу толщиной 2 пикселя для элементов с классом legend */
-    border-radius: 5px;  /* Задать радиус скругления углов в 5 пикселей для элементов с классом legend */
-}
-
-.legend i {
-    border: 1px solid grey;  /* Добавить серую границу толщиной 1 пиксель для элементов i внутри элементов с классом legend */
-    width: 18px; /* Задать ширину элементов i внутри элементов с классом legend равной 18 пикселям */
-    height: 18px; /* Задать высоту элементов i внутри элементов с классом legend равной 18 пикселям */
-    margin-right: 8px; /* Задать правый внешний отступ в 8 пикселей для элементов i внутри элементов с классом legend */
-    float: left; /* Выровнять элементы i внутри элементов с классом legend по левому краю */
-    display: inline-block; /* Задать тип отображения элементов i внутри элементов с классом legend как строчно-блочный */
-}
-
-/* ... (ваш текущий CSS код) ... */
-
-/* Стили для маркеров в легенде */
-.legend-marker {
-    width: 18px; /* Задать ширину элементов с классом legend-marker равной 18 пикселям */
-    height: 18px; /* Задать высоту элементов с классом legend-marker равной 18 пикселям */
-    border-radius: 50%;  /* Задать радиус скругления углов в 50% для элементов с классом legend-marker, чтобы сделать их круглыми */
-    display: inline-block; /* Задать тип отображения элементов с классом legend-marker как строчно-блочный */
-    margin-right: 8px; /* Задать правый внешний отступ в 8 пикселей для элементов с классом legend-marker */
-}
-
-.country-label {
-  background-color: transparent;  /* Задать прозрачный цвет фона для элементов с классом country-label */
-  color: #ffffff;  /* Задать белый цвет текста для элементов с классом country-label */
-  text-shadow:
-    -1px -1px 0 #000,  
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;  /* Добавить черную обводку вокруг текста для элементов с классом country-label */
-  font-weight: bold;  /* Задать жирный шрифт для элементов с классом country-label */
-  font-size: 11px;  /* Задать размер шрифта в 11 пикселей для элементов с классом country-label */
-}
-
-.country-label {
-    transition: opacity 0.5s ease-in-out; /* Добавить плавный переход прозрачности для элементов с классом country-label при наведении и убирании курсора */
-}
-
-#logo {
-    position: absolute; /* Задать абсолютное позиционирование для элемента с id logo, чтобы он не зависел от других элементов */
-    top: -10px; /* Задать верхний отступ в 12 пикселей для элемента с id logo, чтобы он не прилипал к верху страницы */
-    left: 15px; /* Задать левый отступ в 12 пикселей для элемента с id logo, чтобы он не прилипал к левому краю страницы */
-    width: 95px;  /* Задать ширину элемента с id logo равной 100 пикселям */
-    z-index: 1000; /* Задать индекс слоя для элемента с id logo равным 1000, чтобы он был поверх других элементов */
-}
-
-#top-panel {
-    height: 65px; /* Задать высоту элемента с id top-panel равной 50 пикселям */
-    background-color: #003366; /* Задать цвет фона для элемента с id top-panel темно-синим */
-    color: #e5e5e5; /* Задать цвет текста для элемента с id top-panel светло-серым */
-    text-align: center; /* Выровнять текст по центру для элемента с id top-panel */
-    line-height: 50px; /* Задать высоту строки равной высоте элемента, чтобы вертикаально выровнять текст для элемента с id top-panel */
-    /* Немного сужаем текст, чтобы он не вылезал на логотип */
-    padding-left: 10px; /* Задать левый внутренний отступ в 10 пикселей для элемента с id top-panel */
-    padding-right: 10px; 
-    /* задать положение текста чтобы он был по нижней части панели а не висел в воздухе по центру */
-    padding-top: 10px; /* Задать верхний внутренний отступ в 10 пикселей для элемента с id top-panel */
-    padding-bottom: 5px; /* Задать нижний внутренний отступ в 10 пикселей для элемента с id top-panel */
-    font-size: 19px; /* Задать размер шрифта в 19 пикселей для элемента с id top-panel */
-    font-family: "Roboto", sans-serif; /* Задать семейство шрифтов "Roboto" для элемента с id top-panel */
-
-}
-
-
-
-
-    </style> <!-- Конец стилей CSS -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7108003152286260"
     crossorigin="anonymous"></script>
 </head> <!-- Конец заголовка документа -->
 <body> <!-- Начало тела документа -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mapapp.css' %}">
+
     <!-- Yandex Native Ads C-A-3547971-1 -->
 <div id="yandex_rtb_C-A-3547971-1"></div>
 <script>window.yaContextCb.push(()=>{
@@ -180,7 +65,7 @@ The following elements are included in this file:
     
     <div id="top-panel"> <!-- Начало элемента div с id top-panel, который содержит панель с информацией -->
     
-        <img src="{% static 'logo/logo.png' %}" id="logo"> 
+        <img src="{% static 'logo/logo.svg' %}" id="logo"> 
         <h1>Карта визовых ограничений для граждан России</h1> <!-- Вставка заголовка первого уровня с текстом "Карта визовых ограничений для граждан России" -->
     </div> <!-- Конец элемента div с id top-panel -->
     
