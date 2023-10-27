@@ -5,6 +5,14 @@ tripvenv/
 .idea/
 .vscode/
 .gitignore/
+.docker-compose_dev.yml
+.Dockerfile_dev
+.Dockerfile-nginx_dev
+.nginx_dev.conf
+.db.sqlite3
+# docker-compose -f docker-compose_dev.yml build
+# docker-compose -f docker-compose_dev.yml up -d
+
 # # Byte-compiled / optimized / DLL files
 # __pycache__/
 # *.py[cod]
