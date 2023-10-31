@@ -85,7 +85,7 @@ map.on('zoomend', function() {
 
 var legend = L.control({ position: 'topright' });
 
-legend.onAdd = function(map) {
+legend.onAdd = function() {
     var div = L.DomUtil.create('div', 'info legend');
     var categories = ['Россия', 'Паспорт РФ', 'Без визы', 'Электронная виза', 'Виза по прибытии', 'Требуется виза', 'Отказано во въезде', 'Неизвестно'];
     var colors = ['#abaff0', '#0044cd', '#a5ff6c', '#c3d790', '#7dae61', '#eab25e', '#d7191c', '#a2c0cc'];
