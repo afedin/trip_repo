@@ -11,14 +11,15 @@ services:
       - 8000
 
   nginx:
-    image: nginx:stable
+    build:
+      context: ./nginx  # Or '.' if your Dockerfile is in the project root
+      dockerfile: Dockerfile  # Only needed if your Dockerfile has a non-standard name
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./staticfiles:/app/staticfiles
-      - /etc/letsencrypt:/etc/nginx/certs  # Обновленный путь
+      - /etc/letsencrypt:/etc/nginx/certs  # Updated path
     ports:
       - "80:80"
-      - "443:443"  # Открываем порт 443 для HTTPS
+      - "443:443"  # Open port 443 for HTTPS
     depends_on:
       - app
 
@@ -27,7 +28,9 @@ services:
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
-    command: certonly --webroot --webroot-path=/var/www/html --email afedin.gis2014@gmail.com -d wherefly.online -d www.wherefly.online --agree-tos --no-eff-email
+      - ./staticfiles:/var/www/html  # Ensure this path is served by Nginx and accessible for the challenge
+      - ./reload-nginx.sh:/etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --deploy-hook \"/etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh\"; sleep 12h & wait $${!}; done;'"
 
 volumes:
   certbot-etc:

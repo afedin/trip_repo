@@ -1,0 +1,22 @@
+/* styles.css */
+
+body {
+    font-family: 'Arial', sans-serif; /* Можно выбрать другой шрифт, если вы хотите */
+    background-color: #f5f6f8; /* Светло-серый фон */
+    color: #333; /* Основной цвет текста */
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #2c3e50; /* Темно-синий цвет */
+    border-bottom: 2px solid #3498db; /* Синяя полоса под заголовком */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+p {
+    line-height: 1.6; /* Интервал между строками для лучшего восприятия текста */
+    font-size: 16px;
+    margin-bottom: 20px;
+}
